@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // import routes 
 
 const userRoutes = require('./routes/userRoutes');
+const menuRoutes = require('./routes/menuRoutes');
 
 // db connection address
 const uri = `mongodb+srv://mattrcsimpson:${mongoPass}@cluster0.6lvmky3.mongodb.net/?retryWrites=true&w=majority`;
@@ -47,6 +48,18 @@ app.patch('/users/:id', userRoutes.updateUserById);
 // delete user
 app.delete('/users/:id', userRoutes.deleteUserById);
 
+/* MENU ROUTES */
+
+// get all menus
+app.get('/menus', menuRoutes.GetAllMenus);
+// add menu 
+app.post('/menus', menuRoutes.AddMenu);
+// get menu by id
+app.get('/menus/:id', menuRoutes.getMenuById);
+// update menu by id
+app.patch('/menus/:id', menuRoutes.updateMenuById);
+// delete menu
+app.delete('/menus/:id', menuRoutes.deleteMenuById);
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Blog } from "../types/blog";
 
 const Schema = mongoose.Schema;
 const model = mongoose.model;
@@ -22,7 +23,7 @@ export const BlogPostSchema = new Schema({
     }
 });
 
-export const BlogSchema = new Schema({
+export const BlogSchema = new Schema<Blog>({
     title: {
         type: String,
         required: true
@@ -37,4 +38,4 @@ export const BlogSchema = new Schema({
     }
 });
 
-module.exports = model('Blog', BlogSchema);
+module.exports = model<Blog>('Blog', BlogSchema);

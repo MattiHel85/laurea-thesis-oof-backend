@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
+import { User } from "../types/user";
 const Schema = mongoose.Schema;
 const model = mongoose.model;
 
-export const UserSchema = new Schema({
+export const UserSchema = new Schema<User>({
     firstName: {
         type: String,
         required: true
@@ -26,4 +27,4 @@ export const UserSchema = new Schema({
     }
 })
 
-module.exports = model('User', UserSchema);
+module.exports = model<User>('User', UserSchema);
