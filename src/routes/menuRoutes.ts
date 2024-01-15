@@ -44,7 +44,7 @@ const updateMenuById = async (req: any, res: any) => {
 const deleteMenuById = async (req: any, res: any) => {    
     const { id } = req.params;
     const menu = await MenuModel.findByIdAndDelete(id, req.body, { runValidators: true, new: true})
-    console.log(`Deleted user: ${menu.name}`);
+    console.log(`Deleted menu: ${menu.name}`);
 };
 
 export {
