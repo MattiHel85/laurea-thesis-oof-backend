@@ -3,6 +3,6 @@ import { User } from "./user";
 export interface BlogPost {
     title: string;
     content: string;
-    author: User;
+    author: string;
     datetime?: Date;
 }

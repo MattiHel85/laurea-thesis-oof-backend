@@ -35,47 +35,35 @@ database.on("error", (err: Error) => console.log(`Connection Error: ${err}`));
 database.once("open", () => console.log("Welcome to the OOF database!"));
 
 app.get('/api/v1/', (req, res) => {
-  res.send('Hello, Oof!');
+  // res.send('Hello, Oof!');""
+  res.status(200).json({
+    project: 'Old Oak Farm web app built using MERN stack',
+    projectPurpose: "Thesis Project for Bachelor's degree in mobile and web dev",
+    schoolName: "Laurea AMK",
+    studentName: "Matti Simpson"
+  });
 });
 
 /* USER ROUTES */
-
-// get users 
 app.get('/api/v1/users', userRoutes.getAllUsers);
-// add user
 app.post('/api/v1/users', userRoutes.addUser);
-// get user by id
-app.get('/api/v1/users/:id', userRoutes.getUserById)
-// update user
+app.get('/api/v1/users/:id', userRoutes.getUserById);
 app.patch('/api/v1/users/:id', userRoutes.updateUserById);
-// delete user
 app.delete('/api/v1/users/:id', userRoutes.deleteUserById);
 
 /* MENU ROUTES */
-
-// get all menus
 app.get('/api/v1/menus', menuRoutes.getAllMenus);
-// add menu 
 app.post('/api/v1/menus', menuRoutes.addMenu);
-// get menu by id
 app.get('/api/v1/menus/:id', menuRoutes.getMenuById);
-// update menu by id
 app.patch('/api/v1/menus/:id', menuRoutes.updateMenuById);
-// delete menu
 app.delete('/api/v1/menus/:id', menuRoutes.deleteMenuById);
 
 
 /* BLOG ROUTES*/
-
-// get all blogs
 app.get('/api/v1/blogs', blogRoutes.getAllBlogs);
-// add blog
 app.post('/api/v1/blogs', blogRoutes.addBlog);
-// get blog by id
 app.get('/api/v1/blogs/:id', blogRoutes.getBlogById);
-// update blog by id
 app.patch('/api/v1/blogs/:id', blogRoutes.updateBlogById);
-// delete blog by id
 app.delete('/api/v1/blogs/:id', blogRoutes.deleteBlogById);
 
 app.listen(port, () => {

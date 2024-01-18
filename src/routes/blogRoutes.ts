@@ -47,7 +47,7 @@ const deleteBlogById = async (req: any, res: any) => {
     const blog = await BlogModel.findByIdAndDelete(id, req.body, { runValidators: true, new: true})
     !blog ?
     res.status(500).json({error: 'An error occurred.'}) :
-    res.status(200).json({message: `Data updated for: ${blog.title}`});
+    res.status(200).json({message: `Data deleted for: ${blog.title}`});
 };
 
 export {
