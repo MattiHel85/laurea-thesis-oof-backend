@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 import { User } from "../types/user";
+import { validateEmail } from "../utils/validator";
+
 const Schema = mongoose.Schema;
 const model = mongoose.model;
 
@@ -15,7 +17,11 @@ export const UserSchema = new Schema<User>({
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        validate: {
+            validator: validateEmail,
+            message: 'Invalid email format'
+        }
     },
     password: {
         type: String,

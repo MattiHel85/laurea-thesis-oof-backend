@@ -1,13 +1,13 @@
 const MenuModel = require('../models/menu');
 
 // get menus
-const GetAllMenus = async ( req: any, res: any) => {
+const getAllMenus = async ( req: any, res: any) => {
     const AllMenus = await MenuModel.find({});
     res.status(200).json(AllMenus);
 };
 
 // add menu
-const AddMenu = async (req: any, res: any) => {
+const addMenu = async (req: any, res: any) => {
     const {name, description, menuItems } = req.body;
     try {
         const newMenu = new MenuModel({
@@ -30,26 +30,29 @@ const getMenuById = async (req: any, res: any) => {
     !menu ? 
     res.status(500).json({ error: 'Menu not found'}) :
     res.status(200).json(menu);
-
 }
 
-// update users by id 
+// update menu by id 
 const updateMenuById = async (req: any, res: any) => {    
     const { id } = req.params;
     const menu = await MenuModel.findByIdAndUpdate(id, req.body, { runValidators: true, new: true})
-    console.log(`Data updated for: ${menu.name}`);
+    !menu ?
+    res.status(500).json({error: 'An error occurred.'}) :
+    res.status(200).json({message: `Data updated for: ${menu.name}`})
 };
 
-// delete user by id
+// delete menu by id
 const deleteMenuById = async (req: any, res: any) => {    
     const { id } = req.params;
     const menu = await MenuModel.findByIdAndDelete(id, req.body, { runValidators: true, new: true})
-    console.log(`Deleted menu: ${menu.name}`);
+    !menu ?
+    res.status(500).json({error: 'An error occurred.'}) :
+    res.status(200).json({message: `Data updated for: ${menu.name}`});
 };
 
 export {
-    GetAllMenus,
-    AddMenu,
+    getAllMenus,
+    addMenu,
     getMenuById,
     updateMenuById,
     deleteMenuById

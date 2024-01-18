@@ -1,12 +1,8 @@
+import { User } from "./user";
+
 export interface BlogPost {
     title: string;
     content: string;
-    author: string;
+    author: User;
     datetime?: Date;
-}
-
-export interface Blog {
-    title: string;
-    description: string;
-    posts: BlogPost[];
 }

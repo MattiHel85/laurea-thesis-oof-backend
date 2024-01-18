@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 import { Recipient } from "../types/recipient";
+import { validateEmail } from "../utils/validator";
+
 const Schema = mongoose.Schema;
 const model = mongoose.model;
 
@@ -8,8 +10,16 @@ const recipientSchema = new Schema<Recipient>({
         type: String,
         required: true,
         unique: true,
+        validate: {
+            validator: validateEmail,
+            message: 'Invalid email format'
+        }
     },
-    name: {
+    firstName: {
+        type: String,
+        required: true,
+    },
+    lastName: {
         type: String,
         required: true,
     }
