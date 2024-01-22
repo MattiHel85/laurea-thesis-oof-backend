@@ -5,7 +5,7 @@ import { validateEmail } from "../utils/validator";
 const Schema = mongoose.Schema;
 const model = mongoose.model;
 
-const recipientSchema = new Schema<Recipient>({
+export const RecipientSchema = new Schema<Recipient>({
     email: {
         type: String,
         required: true,
@@ -25,4 +25,4 @@ const recipientSchema = new Schema<Recipient>({
     }
 })
 
-module.exports = model<Recipient>('Recipient', recipientSchema);
+module.exports = model<Recipient>('Recipient', RecipientSchema);

@@ -31,6 +31,12 @@ export const UserSchema = new Schema<User>({
         type: Boolean,
         required: false
     }
+}, {
+    toJSON: {
+        transform: function (doc, ret) {
+            delete ret.password;
+        }
+    }
 })
 
 module.exports = model<User>('User', UserSchema);
