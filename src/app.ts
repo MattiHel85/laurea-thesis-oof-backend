@@ -23,25 +23,6 @@ const blogControllers = require('./controllers/blogControllers');
 const authControllers = require('./controllers/authControllers');
 const mailingListControllers = require('./controllers/mailingListControllers');
 
-
-/*TEST NODEMAILER*/
-// import { sendEmail } from './utils/emailSender';
-// import { EmailTemplate } from './types/emailTemplate';
-
-// const dummyRecipientEmails = ['matt.rc.simpson@gmail.com', 'matthew.rc.simpson@hotmail.com', 'matti.simpson@hotmail.fi'];
-// const dummyTemplate: EmailTemplate = {
-//   subject: 'THIS IS A TEST',
-//   content: 'DO NOT BE AFRAID',
-//   images: []
-// };
-
-// dummyRecipientEmails.forEach((email) => {
-//   sendEmail(email, dummyTemplate);
-// })
-
-// sendEmail('Vickilou31@hotmail.co.uk', dummyTemplate)
-/*TEST ENDS*/
-
 const fs = require('fs');
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
