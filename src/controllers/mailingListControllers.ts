@@ -1,4 +1,7 @@
-const MailingListModel = require('../models/mailingList')
+import { EmailTemplate } from "../types/emailTemplate";
+import { Recipient } from "../types/recipient";
+import { sendEmail } from "../utils/emailSender";
+const MailingListModel = require('../models/mailingList');
 
 // get all mailing lists
 const getAllMailingLists = async (req: any, res: any) => {
@@ -48,10 +51,29 @@ const deleteMailingListById = async (req: any, res: any) => {
     res.status(200).json({message: `Data deleted for: ${mailingList.name}`});
 };
 
+// send email to recipients 
+const sendEmailToRecipients = async function (req: any, res: any) {
+    const { subject, content, images} = req.body;
+    const { id } = req.params;
+    const email: EmailTemplate = {
+        subject: subject,
+        content: content,
+        images: images
+    }
+    const mailingList = await MailingListModel.findById(id);
+    const mailingListRecipients: Recipient[] = [];
+    mailingList.recipients.forEach((recipient: Recipient) => {
+        mailingListRecipients.push(recipient)
+    });
+    mailingListRecipients.forEach((recipient) => {
+        sendEmail(recipient.email, email);
+    });
+}
 export {
     getAllMailingLists,
     addMailingList,
     getMailingListById,
     updateMailingListById,
-    deleteMailingListById
+    deleteMailingListById,
+    sendEmailToRecipients
 }

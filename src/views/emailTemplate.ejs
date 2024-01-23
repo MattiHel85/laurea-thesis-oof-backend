@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= template.subject %></title>
+</head>
+<body>
+    <h1><%= template.subject %></h1>
+    <p><%= template.content %></p>
+    <ul>
+        <% template.images.forEach(function(image) { %>
+            <li><img src="<%= image.url %>" alt="<%= image.alt %>"></li>
+        <% }); %>
+    </ul>
+</body>
+</html>

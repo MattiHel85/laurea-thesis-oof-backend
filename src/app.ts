@@ -25,24 +25,23 @@ const mailingListControllers = require('./controllers/mailingListControllers');
 
 
 /*TEST NODEMAILER*/
-import { sendEmail } from './utils/emailSender';
-import { EmailTemplate } from './types/emailTemplate';
+// import { sendEmail } from './utils/emailSender';
+// import { EmailTemplate } from './types/emailTemplate';
 
-const dummyRecipientEmails = ['matt.rc.simpson@gmail.com', 'tanishasimpson001@hotmail.com', 'matthew.rc.simpson@hotmail.com', 'matti.simpson@hotmail.fi'];
-const dummyTemplate: EmailTemplate = {
-  subject: 'THIS IS A TEST',
-  content: 'DO NOT BE AFRAID',
-  expires: new Date(),
-  images: []
-};
+// const dummyRecipientEmails = ['matt.rc.simpson@gmail.com', 'matthew.rc.simpson@hotmail.com', 'matti.simpson@hotmail.fi'];
+// const dummyTemplate: EmailTemplate = {
+//   subject: 'THIS IS A TEST',
+//   content: 'DO NOT BE AFRAID',
+//   images: []
+// };
 
-dummyRecipientEmails.forEach((email) => {
-  sendEmail(email, dummyTemplate);
-})
+// dummyRecipientEmails.forEach((email) => {
+//   sendEmail(email, dummyTemplate);
+// })
 
-sendEmail('Vickilou31@hotmail.co.uk', dummyTemplate)
-
+// sendEmail('Vickilou31@hotmail.co.uk', dummyTemplate)
 /*TEST ENDS*/
+
 const fs = require('fs');
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -105,6 +104,9 @@ app.post('/api/v1/mailing-lists', mailingListControllers.addMailingList);
 app.get('/api/v1/mailing-lists/:id', mailingListControllers.getMailingListById);
 app.patch('/api/v1/mailing-lists/:id', mailingListControllers.updateMailingListById);
 app.delete('/api/v1/mailing-lists/:id', mailingListControllers.deleteMailingListById);
+
+/* SEND EMAIL TO MAILING LIST ROUTES*/
+app.post('/api/v1/mailing-lists/:id', mailingListControllers.sendEmailToRecipients);
 
 /* RECIPIENT ROUTES */
 // app.get('/api/v1/mailing-lists/:id/recipients', mailingListControllers.getAllMailingLists);
