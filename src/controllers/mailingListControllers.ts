@@ -55,17 +55,16 @@ const deleteMailingListById = async (req: any, res: any) => {
 const sendEmailToRecipients = async function (req: any, res: any) {
     const { subject, content, images} = req.body;
     const { id } = req.params;
+
     const email: EmailTemplate = {
         subject: subject,
         content: content,
         images: images
     }
+
     const mailingList = await MailingListModel.findById(id);
-    const mailingListRecipients: Recipient[] = [];
+    
     mailingList.recipients.forEach((recipient: Recipient) => {
-        mailingListRecipients.push(recipient)
-    });
-    mailingListRecipients.forEach((recipient) => {
         sendEmail(recipient.email, email);
     });
 }
