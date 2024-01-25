@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+  
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5em;
+}
+
+header h1, h2 {
+  text-align: center;
+  padding-bottom: 1em;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: rgb(0, 0, 0);
+}
+
+header #laurea-logo {
+  width: 20em;
+  padding: 2em;
+}
+
+main {
+  width: 60%;
+  margin: auto;
+}
+
+main section {
+  padding: 1em;
+}
+
+main section table {
+  width: 100%;
+}
+
+main section table td:nth-child(3){
+  text-align: center;
+}
+
+main section table th, td {
+  width: 33.333%;
+  border: 2.5px solid rgb(0, 0, 0); 
+  padding: 8px;
+}

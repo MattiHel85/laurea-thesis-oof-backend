@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome!</title>
+    <link rel="stylesheet" type="text/css" href="/styles/welcome.css">
+</head>
+<body>
+  <header>
+    <h1>Digital Transformation of a Market Cafe:<br> Building an Online Presence using the MERN Stack</h1>
+    <h2>Matti Simpson</h2>
+    <img id="laurea-logo" src="https://www.laurea.fi/globalassets/logot/laurea/neliotunnus_laurea_rgb.png" alt="Laurea logo">
+  </header>
+  
+  <main>
+    <section>
+      <h2>About the Project</h2>
+      <p>
+        This is part of my thesis project for Laurea University of Applied Sciences. It is the backend for my fullstack MERN project.
+      </p>
+    </section>
+
+    <section>
+      <h3>User Routes</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Route</th>
+            <th>Description</th>
+            <th>Authentication Required?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>GET /api/v1/users</code></td>
+            <td>Get all users</td>
+            <td>Admin</td>
+          </tr>
+          <tr>
+            <td><code>POST /api/v1/users</code></td>
+            <td>Add a new user</td>
+            <td>Admin</td>
+          </tr>
+          <tr>
+            <td><code>GET /api/v1/users/:id</code></td>
+            <td>Get user by ID</td>
+            <td>Admin</td>
+          </tr>
+          <tr>
+            <td><code>PATCH /api/v1/users/:id</code></td>
+            <td>Update user by ID</td>
+            <td>Admin</td>
+          </tr>
+          <tr>
+            <td><code>DELETE /api/v1/users/:id</code></td>
+            <td>Delete user by ID</td>
+            <td>Admin</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h3>Authorisation Routes</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Route</th>
+            <th>Description</th>
+            <th>Authentication Required?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>POST /api/v1/login</code></td>
+            <td>Login to the API</td>
+            <td>User</td>
+          </tr>
+          <tr>
+            <td><code>GET /api/v1/profile</code></td>
+            <td>Get user profile</td>
+            <td>User</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h3>Menu Routes</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Route</th>
+            <th>Description</th>
+            <th>Authentication Required?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>GET /api/v1/menus</code></td>
+            <td>Get all menus</td>
+            <td>None</td>
+          </tr>
+          <tr>
+            <td><code>POST /api/v1/menus</code></td>
+            <td>Add a new menu</td>
+            <td>User</td>
+          </tr>
+          <tr>
+            <td><code>GET /api/v1/menus/:id</code></td>
+            <td>Get menu by ID</td>
+            <td>None</td>
+          </tr>
+          <tr>
+            <td><code>PATCH /api/v1/menus/:id</code></td>
+            <td>Update menu by ID</td>
+            <td>User</td>
+          </tr>
+          <tr>
+            <td><code>DELETE /api/v1/menus/:id</code></td>
+            <td>Delete menu by ID</td>
+            <td>Admin</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h3>Blog Routes</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Route</th>
+            <th>Description</th>
+            <th>Authentication Required?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>GET /api/v1/blogs</code></td>
+            <td>Get all blogs</td>
+            <td>None</td>
+          </tr>
+          <tr>
+            <td><code>POST /api/v1/blogs</code></td>
+            <td>Add a new blog</td>
+            <td>User</td>
+          </tr>
+          <tr>
+            <td><code>GET /api/v1/blogs/:id</code></td>
+            <td>Get blog by ID</td>
+            <td>None</td>
+          </tr>
+          <tr>
+            <td><code>PATCH /api/v1/blogs/:id</code></td>
+            <td>Update blog by ID</td>
+            <td>User</td>
+          </tr>
+          <tr>
+            <td><code>DELETE /api/v1/blogs/:id</code></td>
+            <td>Delete blog by ID</td>
+            <td>Admin</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h3>Mailing List Routes</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Route</th>
+            <th>Description</th>
+            <th>Authentication Required?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>GET /api/v1/mailing-lists</code></td>
+            <td>Get all mailing lists</td>
+            <td>User</td>
+          </tr>
+          <tr>
+            <td><code>POST /api/v1/mailing-lists</code></td>
+            <td>Add a new mailing list</td>
+            <td>User</td>
+          </tr>
+          <tr>
+            <td><code>GET /api/v1/mailing-lists/:id</code></td>
+            <td>Get mailing list by ID</td>
+            <td>User</td>
+          </tr>
+          <tr>
+            <td><code>PATCH /api/v1/mailing-lists/:id</code></td>
+            <td>Update mailing list by ID</td>
+            <td>User</td>
+          </tr>
+          <tr>
+            <td><code>DELETE /api/v1/mailing-lists/:id</code></td>
+            <td>Delete mailing list by ID</td>
+            <td>Admin</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

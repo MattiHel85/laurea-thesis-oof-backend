@@ -4,9 +4,3 @@ export interface BlogPost {
     author: string;
     datetime?: Date;
 }
-
-export interface Blog {
-    title: string;
-    description: string;
-    posts: BlogPost[];
-}

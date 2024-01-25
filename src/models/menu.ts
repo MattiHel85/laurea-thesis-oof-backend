@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
+import { Menu, MenuItem } from "../types/menu";
 
 const Schema = mongoose.Schema;
 const model = mongoose.model;
 
-export const MenuItemSchema = new Schema({
+export const MenuItemSchema = new Schema<MenuItem>({
     name: {
         type: String,
         required: true
@@ -18,7 +19,7 @@ export const MenuItemSchema = new Schema({
     }
 });
 
-export const MenuSchema = new Schema({
+export const MenuSchema = new Schema<Menu>({
     name: {
         type: String,
         required: true
@@ -33,4 +34,4 @@ export const MenuSchema = new Schema({
     }
 });
 
-module.exports = model('Menu', MenuSchema);
+module.exports = model<Menu>('Menu', MenuSchema);

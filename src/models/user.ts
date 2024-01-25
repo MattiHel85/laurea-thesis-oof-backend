@@ -1,8 +1,11 @@
-import mongoose from "mongoose";
+import mongoose, { Document} from "mongoose";
+import { User } from "../types/user";
+import { validateEmail } from "../utils/validator";
+
 const Schema = mongoose.Schema;
 const model = mongoose.model;
 
-export const UserSchema = new Schema({
+export const UserSchema = new Schema<User & Document>({
     firstName: {
         type: String,
         required: true
@@ -14,7 +17,11 @@ export const UserSchema = new Schema({
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        validate: {
+            validator: validateEmail,
+            message: 'Invalid email format'
+        }
     },
     password: {
         type: String,
@@ -24,6 +31,12 @@ export const UserSchema = new Schema({
         type: Boolean,
         required: false
     }
+}, {
+    toJSON: {
+        transform: function (doc, ret) {
+            delete ret.password;
+        }
+    }
 })
 
-module.exports = model('User', UserSchema);
+module.exports = model<User & Document>('User', UserSchema);
