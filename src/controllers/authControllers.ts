@@ -19,14 +19,14 @@ const getProfile = async (req: any, res: any) => {
 
 const login = async (req: any, res: any) => {
     const { email, password } = req.body;
-
+    
     try {
         const user: User = await UserModel.findOne({email});
         
         if (!user) {
             return res.status(401).json({ error: 'Invalid user' });
         }
-
+        
         const passwordMatch = await bcrypt.compare(password, user.password);
 
         if (!passwordMatch) {
