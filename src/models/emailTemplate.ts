@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { EmailTemplate } from "../types/emailTemplate";
+import { validateImageUrl } from "../utils/validator";
 
 const Schema = mongoose.Schema;
 const model = mongoose.model;
@@ -13,16 +14,15 @@ const EmailTemplateSchema = new Schema<EmailTemplate>({
         type: String,
         required: true,
     },
-    expires: {
-        type: Date,
-        default: Date.now() + 24 * 60 * 60 * 1000,
-        index: {expires: '1d'},
-    },
     images: [
         {
             url: {
                 type: String,
                 required: true,
+                validate: {
+                    validator: validateImageUrl,
+                    message: 'invalid file type'
+                }
             },
             alt: {
                 type: String,

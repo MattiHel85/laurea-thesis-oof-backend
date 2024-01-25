@@ -1,11 +1,11 @@
-import mongoose from "mongoose";
+import mongoose, { Document} from "mongoose";
 import { User } from "../types/user";
 import { validateEmail } from "../utils/validator";
 
 const Schema = mongoose.Schema;
 const model = mongoose.model;
 
-export const UserSchema = new Schema<User>({
+export const UserSchema = new Schema<User & Document>({
     firstName: {
         type: String,
         required: true
@@ -39,4 +39,6 @@ export const UserSchema = new Schema<User>({
     }
 })
 
-module.exports = model<User>('User', UserSchema);
+module.exports = model<User & Document>('User', UserSchema);
+
+export { User };

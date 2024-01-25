@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import './config/passport';
 import passport from 'passport';
+import { authenticate } from './middleware/authMiddleware';
 
 const app = express();
 const bodyParser = require('body-parser');
@@ -58,7 +59,7 @@ app.post('/api/v1/login', authControllers.login);
 app.get('/api/v1/profile', passport.authenticate('jwt', {session: false}), authControllers.getProfile);
 
 /* USER ROUTES */
-app.get('/api/v1/users', userControllers.getAllUsers);
+app.get('/api/v1/users', authenticate, userControllers.getAllUsers);
 app.post('/api/v1/users', userControllers.addUser);
 app.get('/api/v1/users/:id', userControllers.getUserById);
 app.patch('/api/v1/users/:id', userControllers.updateUserById);
