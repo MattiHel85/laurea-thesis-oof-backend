@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "start": "ts-node src/app.ts",
+    "test": "jest"
+  },
   "dependencies": {
     "@shelf/jest-mongodb": "^4.2.0",
     "@types/passport-jwt": "^4.0.0",
@@ -8,23 +12,25 @@
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "jest": "^29.7.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.3.0",
     "mongodb-memory-server": "^9.1.6",
     "mongoose": "^8.0.4",
     "nodemailer": "^6.9.8",
     "passport": "^0.7.0",
-    "passport-jwt": "^4.0.1"
+    "passport-jwt": "^4.0.1",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@types/ejs": "^3.1.5",
     "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.13",
     "@types/node": "^20.10.0",
     "@types/nodemailer": "^6.4.14",
     "@types/supertest": "^6.0.2",
+    "jest": "^29.7.0",
     "supertest": "^6.3.4",
-    "ts-jest": "^29.1.1",
+    "ts-jest": "^29.2.5",
     "typescript": "^5.3.2"
   }
 }

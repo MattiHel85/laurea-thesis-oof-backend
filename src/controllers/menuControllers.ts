@@ -1,4 +1,4 @@
-const MenuModel = require('../models/menu');
+import { MenuModel } from '../models/menu';
 
 // get menus
 const getAllMenus = async ( req: any, res: any) => {
@@ -8,7 +8,7 @@ const getAllMenus = async ( req: any, res: any) => {
 
 // add menu
 const addMenu = async (req: any, res: any) => {
-    const {name, description, menuItems } = req.body;
+    const { name, description, menuItems } = req.body;
     try {
         const newMenu = new MenuModel({
             name,
@@ -17,11 +17,13 @@ const addMenu = async (req: any, res: any) => {
         });
         await newMenu.save();
 
-        return res.status(200).json({message: `Menu with name "${newMenu.name} successfully added"`});
+        return res.status(201).json({ message: `Menu with name "${newMenu.name}" successfully added` });
     } catch (err) {
-        return res.status(500).json({ err: `${res.message}, bro!`})
+        console.error(err);  // Log the error for debugging
+        return res.status(500).json({ error: 'An error occurred while adding the menu.' });
     }
-}
+};
+
 
 // fetch menu by id
 const getMenuById = async (req: any, res: any) => {
@@ -44,10 +46,10 @@ const updateMenuById = async (req: any, res: any) => {
 // delete menu by id
 const deleteMenuById = async (req: any, res: any) => {    
     const { id } = req.params;
-    const menu = await MenuModel.findByIdAndDelete(id, req.body, { runValidators: true, new: true})
+    const menu = await MenuModel.findByIdAndDelete(id);
     !menu ?
     res.status(500).json({error: 'An error occurred.'}) :
-    res.status(200).json({message: `Data updated for: ${menu.name}`});
+    res.status(204).json({message: `Deleted menu: ${menu.name}`});
 };
 
 export {

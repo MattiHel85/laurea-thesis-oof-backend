@@ -5,12 +5,13 @@ import passport from 'passport';
 import { authenticateUser, authenticateAdmin } from './middleware/authMiddleware';
 import { rootUserInit } from './utils/rootUserInit';
 
+
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const port = 3000;
 const mongoose = require('mongoose');
-const mongoPass = 'QG26uJQnUAZL1n2G';
+const mongoPass = process.env.MONGO_PASS ||'QG26uJQnUAZL1n2G';
 
 // Parse JSON and URL-encoded data
 app.use(bodyParser.json());
@@ -23,7 +24,7 @@ const userControllers = require('./controllers/userControllers');
 const menuControllers = require('./controllers/menuControllers');
 const blogControllers = require('./controllers/blogControllers');
 const authControllers = require('./controllers/authControllers');
-const mailingListControllers = require('./controllers/mailingListControllers');
+const feedbackControllers = require('./controllers/feedbackControllers');
 
 const fs = require('fs');
 const path = require('path');
@@ -33,10 +34,7 @@ dotenv.config();
 // db connection address
 const uri = `mongodb+srv://mattrcsimpson:${mongoPass}@cluster0.6lvmky3.mongodb.net/?retryWrites=true&w=majority`;
 // connect to db
-mongoose.connect(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+mongoose.connect(uri);
 
 const database = mongoose.connection;
 
@@ -85,15 +83,18 @@ app.get('/api/v1/blogs/:id', blogControllers.getBlogById);
 app.patch('/api/v1/blogs/:id', authenticateUser, blogControllers.updateBlogById);
 app.delete('/api/v1/blogs/:id', authenticateAdmin, blogControllers.deleteBlogById);
 
-/* MAILING LIST ROUTES*/
-app.get('/api/v1/mailing-lists', authenticateUser, mailingListControllers.getAllMailingLists);
-app.post('/api/v1/mailing-lists', authenticateUser, mailingListControllers.addMailingList);
-app.get('/api/v1/mailing-lists/:id', authenticateUser, mailingListControllers.getMailingListById);
-app.patch('/api/v1/mailing-lists/:id', authenticateUser, mailingListControllers.updateMailingListById);
-app.delete('/api/v1/mailing-lists/:id', authenticateAdmin, mailingListControllers.deleteMailingListById);
+/* FEEDBACK ROUTES*/
+// app.get('/api/v1/feedback', authenticateUser, feedbackControllers.getAllFeedback);
+// app.post('/api/v1/feedback', feedbackControllers.addFeedback);
+// app.get('/api/v1/feedback/:id', authenticateUser, feedbackControllers.getFeedbackById);
+// app.delete('/api/v1/feedback/:id', authenticateAdmin, feedbackControllers.deleteFeedbackById);
 
-/* SEND EMAIL TO MAILING LIST ROUTES*/
-app.post('/api/v1/mailing-lists/:id', authenticateUser, mailingListControllers.sendEmailToRecipients);
+// /* REPLY TO FEEDBACK ROUTES*/
+// app.get('/api/v1/feedback-responses', authenticateAdmin, feedbackControllers.getAllFeedbackResponses);
+// app.post('/api/v1/feedback-responses', authenticateAdmin, feedbackControllers.replyToFeedback);
+// app.get('/api/v1/feedback-responses/:id', authenticateAdmin, feedbackControllers.getFeedbackResponseById);
+// app.delete('/api/v1/feedback-responses/:id', authenticateAdmin, feedbackControllers.deleteFeedbackResponseById);
+
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}/api/v1`);
