@@ -1,4 +1,4 @@
-const BlogModel = require('../models/blog');
+import { BlogModel } from "../models/blog";
 
 // get all blogs
 const getAllBlogs = async (req: any, res: any) => {
@@ -44,10 +44,10 @@ const updateBlogById = async (req: any, res: any) => {
 // delete blog by id
 const deleteBlogById = async (req: any, res: any) => {
     const { id } = req.params;
-    const blog = await BlogModel.findByIdAndDelete(id, req.body, { runValidators: true, new: true})
+    const blog = await BlogModel.findByIdAndDelete(id, req.body)
     !blog ?
     res.status(500).json({error: 'An error occurred.'}) :
-    res.status(200).json({message: `Data deleted for: ${blog.title}`});
+    res.status(200).json({message: `Blog with ID "${id}" deleted successfully`});
 };
 
 export {

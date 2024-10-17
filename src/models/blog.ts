@@ -23,5 +23,4 @@ export const BlogPostSchema = new Schema<BlogPost>({
     }
 });
 
-
-module.exports = model<BlogPost>('BlogPost', BlogPostSchema);
+export const BlogModel = model<BlogPost>('BlogPost', BlogPostSchema);

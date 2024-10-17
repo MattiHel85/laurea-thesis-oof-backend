@@ -15,7 +15,6 @@ interface mockRequestBody {
     }>;
 };
 
-// Mock request and response objects
 const mockRequest = (body: mockRequestBody = {name: '', description: '', menuItems: []}, params = {}) => ({
     body,
     params
@@ -31,7 +30,7 @@ const mockResponse = () => {
 describe('Menu Controller', () => {
     let menuId: string;
 
-    const mongoPass = process.env.MONGO_PASS || 'QG26uJQnUAZL1n2G';
+    const mongoPass = process.env.MONGO_PASS;
     const uri = `mongodb+srv://mattrcsimpson:${mongoPass}@cluster0.6lvmky3.mongodb.net/?retryWrites=true&w=majority`;
 
     beforeEach(async () => {
